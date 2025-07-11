@@ -1,0 +1,39 @@
+{% extends 'posapp/base.html' %}
+{% block content %}
+
+<div class="text-center">
+    <h1 class="mb-4">👋 Welcome to Your POS Dashboard</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white mb-3 shadow">
+                <div class="card-body text-center">
+                    <h4>{{ product_count }}</h4>
+                    <p>Products</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white mb-3 shadow">
+                <div class="card-body text-center">
+                    <h4>{{ sale_count }}</h4>
+                    <p>Total Sales</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark mb-3 shadow">
+                <div class="card-body text-center">
+                    <h4>PKR {{ total_revenue }}</h4>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'product_list' %}" class="btn btn-outline-primary mt-4">View Products</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'posapp/base.html' %}
+{% block content %}
+<h2 class="mb-3">Available Products</h2>
+
+<!-- 🔍 Search Form -->
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="q" placeholder="Search product..." class="form-control" value="{{ request.GET.q }}">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+    </div>
+</form>
+
+<!-- 📋 Product Table -->
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th>Name</th>
+            <th>Price (PKR)</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr {% if product.stock <= 5 %} class="table-danger fw-bold" {% endif %}>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                {{ product.stock }}
+                {% if product.stock <= 5 %}
+                    <span class="text-danger ms-2"><i class="fas fa-exclamation-triangle"></i> Low</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="text-center text-danger">No products found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
